@@ -3,7 +3,7 @@
 
 ## Run the install script
 ```sh
-. <(wget -qO- https://raw.githubusercontent.com/illummina/test/main/nibiru.sh)
+. <(wget -qO- https://raw.githubusercontent.com/taskit4nodes/nibiru/main/install.sh)
 ```
 ## Enter a moniker name. ONLY LETTERS AND NUMBERS
 ## Choose create new wallet or recover existing wallet:
