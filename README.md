@@ -15,4 +15,18 @@
 >
 > nibid status 2>&1 | jq .SyncInfo (ждем false)
 
-nibid keys list (берем address, начинается с nibi....., идем в дискорд Нибиры, беседа fauсet, $request {ваш nibi...})
+> nibid keys list (берем address, начинается с nibi....., идем в дискорд Нибиры, беседа fauсet, $request {ваш nibi...})
+
+```sh
+nibid tx staking create-validator \
+--amount 10000000unibi \
+--commission-max-change-rate "0.1" \
+--commission-max-rate "0.20" \
+--commission-rate "0.1" \
+--min-self-delegation "1" \
+--pubkey=$(nibid tendermint show-validator) \
+--moniker <your_moniker> \
+--chain-id nibiru-itn-3 \
+--gas-prices 0.025unibi \
+--from wallet
+```
