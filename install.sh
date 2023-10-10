@@ -28,7 +28,7 @@ while true; do
     read -p "Enter a moniker name (contains only letters and numbers, not longer than 15 characters): " moniker
 
     if is_valid_moniker "$moniker"; then
-        nibid init "$moniker" --chain-id=nibiru-itn-2 --home $HOME/.nibid
+        nibid init "$moniker" --chain-id=nibiru-itn-3 --home $HOME/.nibid
         break
     else
         echo "Invalid moniker name. Please follow the naming rules."
@@ -64,20 +64,20 @@ echo "*                                                           *"
 echo "*************************************************************"
 echo -e "\e[0m"
 
-NETWORK=nibiru-itn-2
-curl -s "https://networks.itn2.nibiru.fi/$NETWORK/genesis" > $HOME/.nibid/config/genesis.json
+NETWORK=nibiru-itn-3
+curl -s "https://networks.itn.nibiru.fi/$NETWORK/genesis" > $HOME/.nibid/config/genesis.json
 
 shasum -a 256 $HOME/.nibid/config/genesis.json
 
-sed -i 's|seeds =.*|seeds = "'$(curl -s https://networks.itn2.nibiru.fi/$NETWORK/seeds)'"|g' $HOME/.nibid/config/config.toml
+sed -i 's|seeds =.*|seeds = "'$(curl -s https://networks.itn.nibiru.fi/$NETWORK/seeds)'"|g' $HOME/.nibid/config/config.toml
 
 sed -i 's/minimum-gas-prices =.*/minimum-gas-prices = "0.025unibi"/g' $HOME/.nibid/config/app.toml
 
 config_file="$HOME/.nibid/config/config.toml"
 sed -i "s|enable =.*|enable = true|g" "$config_file"
-sed -i "s|rpc_servers =.*|rpc_servers = \"$(curl -s https://networks.itn2.nibiru.fi/$NETWORK/rpc_servers)\"|g" "$config_file"
-sed -i "s|trust_height =.*|trust_height = \"$(curl -s https://networks.itn2.nibiru.fi/$NETWORK/trust_height)\"|g" "$config_file"
-sed -i "s|trust_hash =.*|trust_hash = \"$(curl -s https://networks.itn2.nibiru.fi/$NETWORK/trust_hash)\"|g" "$config_file"
+sed -i "s|rpc_servers =.*|rpc_servers = \"$(curl -s https://networks.itn.nibiru.fi/$NETWORK/rpc_servers)\"|g" "$config_file"
+sed -i "s|trust_height =.*|trust_height = \"$(curl -s https://networks.itn.nibiru.fi/$NETWORK/trust_height)\"|g" "$config_file"
+sed -i "s|trust_hash =.*|trust_hash = \"$(curl -s https://networks.itn.nibiru.fi/$NETWORK/trust_hash)\"|g" "$config_file"
 
 SERVICE_UNIT_FILE="/etc/systemd/system/nibiru.service"
 sudo bash -c "cat > $SERVICE_UNIT_FILE" <<EOL
