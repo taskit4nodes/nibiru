@@ -10,13 +10,18 @@
 ##    - The program will ask for the phrase generated when creating the wallet. If you don't have this phrase, you won't be able to recover the wallet
 ##    - "Enter keyring passphrase" - create and put and SAVE a phrase you want. It will be a key to your wallet.
 
-
-> apt install jq
->
-> nibid status 2>&1 | jq .SyncInfo (ждем false)
-
-> nibid keys list (берем address, начинается с nibi....., идем в дискорд Нибиры, беседа fauсet, $request {ваш nibi...})
-
+```sh 
+apt install jq
+```
+## Chech sync status,  (wait for 'false')
+```sh
+nibid status 2>&1 | jq .SyncInfo
+```
+## Берем address, начинается с nibi....., идем в дискорд Нибиры, беседа fauсet, $request {ваш nibi...})
+```sh
+nibid keys list
+```
+## After catching_up will be false (to check it go to 'chech sync status' stage)
 ```sh
 nibid tx staking create-validator \
 --amount 10000000unibi \
